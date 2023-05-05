@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "309601670586",
+    "project_id": "skyfun-english",
+    "storage_bucket": "skyfun-english.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309601670586:android:38ba56a6dbe43e547d7983",
+        "android_client_info": {
+          "package_name": "com.example.finalreport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309601670586-abff6qu5e9idpeq4q5tp36tjj532fhas.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY1gUq3S97Z4u6WQsb-wePJntA5y-Srvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309601670586-abff6qu5e9idpeq4q5tp36tjj532fhas.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
