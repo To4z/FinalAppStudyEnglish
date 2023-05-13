@@ -53,14 +53,15 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     tvScore.setText(Objects.requireNonNull(dataSnapshot.getValue()).toString());
+                } else {
+                    tvScore.setText("0");
                 }
-                tvScore.setText("0");
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
 
         Glide.with(ProfileActivity.this).load(firebaseUser.getPhotoUrl()).into(userImage);
 

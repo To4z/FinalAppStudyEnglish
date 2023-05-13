@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -13,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import android.preference.PreferenceManager;
 import android.speech.RecognitionService;
 import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +75,8 @@ public class CodeFragment extends Fragment {
 
     private TextView translatedTV;
 
+    private ActivityResultLauncher<Intent> launcher;
+
     String[] fromLanguages = {"From", "English", "Vietnamese"};
     String[] toLanguages = {"To", "English","Vietnamese"};
 
@@ -79,8 +84,6 @@ public class CodeFragment extends Fragment {
     private static final int REQUEST_PERMISSION_CODE = 1;
 
     int languageCode, fromLanguageCode, toLanguageCode = 0;
-
-
 
     /**
      * Use this factory method to create a new instance of
@@ -107,6 +110,18 @@ public class CodeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK) {
+                Intent data = result.getData();
+                ArrayList<String> resultList = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                if (resultList != null && resultList.size() > 0) {
+                    String spokenText = resultList.get(0);
+                    // Do something with the spoken text
+                    sourceEdt.setText(spokenText);
+                }
+            }
+        });
 
     }
 
@@ -178,41 +193,24 @@ public class CodeFragment extends Fragment {
         micIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-                i.putExtra(RecognizerIntent.EXTRA_PROMPT,"Speak to convert into Text");
-                try{
-                    startActivityForResult(i,REQUEST_PERMISSION_CODE);
-                } catch (Exception e){
-                    e.printStackTrace();
-                    Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
+                // Launch the activity for result using the registered launcher
+                launcher.launch(intent);
             }
         });
-
-
 
         return view;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_PERMISSION_CODE){
-            if(resultCode == RESULT_OK && data != null){
-                ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-
-                sourceEdt.setText(result.get(0));
-            }
-        }
-    }
 
     private void translateText(Context context, int fromLanguageCode, int toLanguageCode, String source) {
         translatedTV.setText("Wait for result");
         GptProvider gptProvider = GptProvider.getInstance(context);
         if(fromLanguageCode == 1){
-            gptProvider.setPrompt("Hãy dịch cho tôi : " + source);
+            gptProvider.setPrompt("Hãy dịch cho tôi : " + source + "sang Tiếng Việt");
         } else {
             gptProvider.setPrompt("Hãy dịch cho tôi : " + source + "sang tiếng anh");
         }

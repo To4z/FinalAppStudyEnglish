@@ -67,4 +67,8 @@ dependencies {
 //    gpt
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
+//    read file pdf
+    implementation 'com.itextpdf:itextg:5.5.10'
+
+
 }

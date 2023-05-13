@@ -90,6 +90,7 @@ public class Hello extends AppCompatActivity {
 
 
         private void showDialog(String find,String topicName) {
+            topicName = topicName.toUpperCase();
             Dialog dialog = new Dialog(this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));

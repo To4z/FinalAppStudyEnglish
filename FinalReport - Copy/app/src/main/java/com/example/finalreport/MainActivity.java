@@ -21,6 +21,7 @@ import com.example.finalreport.authentication.LoginActivity;
 import com.example.finalreport.authentication.ProfileActivity;
 import com.example.finalreport.authentication.RegisterActivity;
 import com.example.finalreport.leaderboard.LeaderboardActivity;
+import com.example.finalreport.pdf.readFilePdf;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -88,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     break;
                 case R.id.share:
                     startActivity(new Intent(MainActivity.this, GPTactivity.class));
+                    break;
+                case R.id.readPdf:
+                    startActivity(new Intent(MainActivity.this, readFilePdf.class));
                     break;
                 case R.id.rate:
                     startActivity(new Intent(MainActivity.this, ProfileActivity.class));

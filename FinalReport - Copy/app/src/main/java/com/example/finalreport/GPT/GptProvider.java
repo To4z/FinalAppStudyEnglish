@@ -30,7 +30,7 @@ public class GptProvider {
     private float temperature;
 
     private GptProvider(Context context) {
-        apiKey = "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";
+        apiKey = "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";
         url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
         client = new OkHttpClient();
         prompt = "";

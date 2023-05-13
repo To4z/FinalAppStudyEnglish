@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,51 +18,53 @@
         android:theme="@style/Theme.FinalReport"
         tools:targetApi="31">
         <activity
-            android:theme="@style/AppTheme"
+            android:name=".pdf.readFilePdf"
+            android:exported="false" />
+        <activity
             android:name=".authentication.ChangePasswordActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-            android:theme="@style/AppTheme"
             android:name=".GPT.GPTactivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-            android:theme="@style/AppTheme"
             android:name=".leaderboard.LeaderboardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-            android:theme="@style/AppTheme"
             android:name=".ui.quiz.ScoreActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-            android:theme="@style/AppTheme"
             android:name=".ui.quiz.StartQuiz"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-            android:theme="@style/AppTheme"
             android:name=".authentication.ProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-            android:theme="@style/AppTheme"
             android:name=".authentication.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-            android:theme="@style/AppTheme"
             android:name=".authentication.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-            android:theme="@style/AppTheme"
             android:name=".chapter.one.Hello"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
-
             android:name=".chaptertopics.TopicActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:theme="@style/AppTheme"
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".SplashScreen"
             android:exported="true">

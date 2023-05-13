@@ -114,7 +114,6 @@
             android:textAlignment="center"
             android:textSize="15sp"
             android:layout_gravity="center"
-
             />
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"

@@ -68,7 +68,7 @@ public class GPTactivity extends AppCompatActivity {
     }
 
     private void getResponse(String question, Callback callback) {
-        final String apiKey = "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";
+        final String apiKey = "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";
         final String url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
 
         String requestBody = "{\n" +
